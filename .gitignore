@@ -35,3 +35,9 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# Install script
+install_nvm.sh
+
+#PM2 run configuration
+pm2.json

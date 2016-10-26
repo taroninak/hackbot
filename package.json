@@ -1,0 +1,37 @@
+{
+  "name": "hackbot",
+  "version": "0.0.1",
+  "description": "Bot for our PicsArt Messaging platform which will suggest users and photos",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taronpa/hackbot.git"
+  },
+  "keywords": [
+    "bot",
+    "picsart",
+    "slackbot",
+    "api",
+    "websocket",
+    "node",
+    "ws",
+    "messaging"
+  ],
+  "author": "Taron Petrosyan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taronpa/hackbot/issues"
+  },
+  "homepage": "https://github.com/taronpa/hackbot#readme",
+  "dependencies": {
+    "bluebird": "^3.4.1",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "request": "^2.74.0",
+    "ws": "^1.1.1"
+  }
+}
