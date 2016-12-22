@@ -8,7 +8,7 @@ const parrot = require('./bots/parrot');
 const pa = require('./services/pa');
 const slack = require('./services/slack');
 
-slack.start();
+//slack.start();
 pa.start();
 let app = express();
 app.use(morgan('tiny'));
@@ -17,7 +17,7 @@ require('./controllers/web')(app);
 
 app.listen(config.port, config.host, function() {
     console.log('Listening on ' + config.host + ':' + config.port);
-    // setInterval(function() {
-    //     request(config.url);
-    // }, 600000);
+    setInterval(function() {
+        request('https://hackbot-slack.herokuapp.com/');
+    }, 600000);
 });

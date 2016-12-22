@@ -30,7 +30,7 @@ class PA extends EventEmitter {
                 packet.data.content = answer.text;
                 socket.send(packet);
                 for(let idx in answer.attachments) {
-                    packet.data.type = 'image';
+                    packet.data.type = 'fte';
                     packet.data.content = JSON.stringify({ url: answer.attachments[idx].image_url });
                     socket.send(packet);
                 }
