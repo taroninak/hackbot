@@ -4,7 +4,7 @@
   "description": "Bot for our PicsArt Messaging platform which will suggest users and photos",
   "main": "app.js",
   "scripts": {
-    "start": "node start.js",
+    "start": "node app.js",
     "test": "mocha"
   },
   "repository": {
