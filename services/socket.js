@@ -8,38 +8,43 @@ class Socket extends EventEmitter {
         super();
     }
 
+    setUrl(url) {
+        this.url = url;
+    }
+
     connect (url) {
         this.ws = new WebSocket(url);
 
-        let self = this;
-        self.url = url;
+        this.url = url;
 
-        this.ws.on('open', function open() {
+        this.ws.on('open', () => {
             console.log('Connection established!');
-            setInterval(function () {
-                self.ping();
+            setInterval(() => {
+                this.ping();
             }, 60000);
 
-            self.timeout = setInterval(function () {
-                self.ws.close();
+            this.timeout = setInterval(() => {
+                this.ws.close();
             }, 6000000);
         });
 
-        this.ws.on('close', function close() {
+        this.ws.on('close', () => {
             console.log('Connection closed!');
-            clearInterval(self.timeout);
-            self.connect(self.url);
+            clearInterval(this.timeout);
+            this.connect(this.url);
         });
 
-        this.ws.on('message', function message(packet, flags) {
+        this.ws.on('message', (packet, flags) => {
             console.log('>' + packet);
             packet = JSON.parse(packet);
-            self.dispatch(packet);
+            this.dispatch(packet);
         });
     }
 
     dispatch (packet) {
         switch(packet.type) {
+            case 'message' : this.emit('message', packet);
+            break;
             case 'CMD' : this.emit('message', packet);
                 break;
             case 'reconnect_url': this.url = packet.url;

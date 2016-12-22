@@ -4,17 +4,12 @@ const morgan = require('morgan');
 const request = require('request');
 
 const config = require('./config/main');
-const socket = require('./services/socket');
 const parrot = require('./bots/parrot');
+const pa = require('./services/pa');
+const slack = require('./services/slack');
 
-socket.connect(config.url);
-socket.on('message', function (packet) {
-    if(packet && packet.type == 'CMD')
-    setImmediate(function () {
-        parrot.dispatch(packet);
-    });
-});
-
+slack.start();
+pa.start();
 let app = express();
 app.use(morgan('tiny'));
 
