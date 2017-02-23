@@ -50,7 +50,7 @@ const answers = {
         'I don’t catch what you said. Sorry.'
     ],
     me: [
-        'Me. I\'m not LUIS, I\'m a bot',
+        'Me. I\'m not LUIS, I\'m a bot.',
         'I\'m sure only that I\'m not Tom Brady.'
     ]
 }

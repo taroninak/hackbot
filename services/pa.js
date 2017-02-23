@@ -13,7 +13,7 @@ class PA extends EventEmitter {
 
     *dispatch (message) {
         if(message.type == 'CMD' && message.action.toLowerCase() == 'get_message') {
-            if(message.data.type == 'image') {
+            if(message.data.type == 'pa_image') {
                 let content = JSON.parse(message.data.content);
                 content.url = 'http://cdn110.picsart.com/215180466000202.jpg';
                 message.data.content = JSON.stringify(content);
