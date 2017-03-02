@@ -12,7 +12,7 @@ class PA extends EventEmitter {
     }
 
     *dispatch (message) {
-        if(message.type == 'CMD' && message.action.toLowerCase() == 'get_message') {
+        if(message.type == 'CMD' && message.action.toLowerCase() == 'get_message' && message.data.type != 'system_message') {
             if(message.data.type == 'pa_image') {
                 let content = JSON.parse(message.data.content);
                 content.url = 'http://cdn110.picsart.com/215180466000202.jpg';
@@ -36,6 +36,7 @@ class PA extends EventEmitter {
                 }
             } else {
                 message.data.content = answer;
+                message.data.type = 'plain';
                 let packet = {
                     id: 'client:' + String(parseInt(new Date().getTime())),
                     type: 'CMD',
