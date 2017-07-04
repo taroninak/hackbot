@@ -12,12 +12,7 @@ class PA extends EventEmitter {
     }
 
     *dispatch (message) {
-        if(message.type == 'CMD' && message.action.toLowerCase() == 'get_message' && message.data.type != 'system_message') {
-            if(message.data.type == 'pa_image') {
-                let content = JSON.parse(message.data.content);
-                content.url = 'http://cdn110.picsart.com/215180466000202.jpg';
-                message.data.content = JSON.stringify(content);
-            }
+        if(message.type == 'CMD' && message.action.toLowerCase() == 'get_message' && message.data.type == 'plain' && message.data.user_id != 215187518003102) {
             let answer = yield luis.answer(message.data.content);
             if(typeof answer == 'object') {
                 let packet = {
@@ -29,7 +24,8 @@ class PA extends EventEmitter {
                 packet.data.type = 'plain';
                 packet.data.content = answer.text;
                 socket.send(packet);
-                for(let idx in answer.attachments) {
+                for (let idx in answer.attachments) {
+                    packet = JSON.parse(JSON.stringify(packet));
                     packet.data.type = 'fte';
                     packet.data.content = JSON.stringify({ url: answer.attachments[idx].image_url });
                     socket.send(packet);
